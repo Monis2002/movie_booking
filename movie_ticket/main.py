@@ -50,6 +50,7 @@ def movie_form():
 @app.route('/booking_info',methods=["POST","GET"])
 def booking_info():
     name=request.form.get('name')
+    name=name.lower()
     time=request.form.get('time')
     qty=int(request.form.get('qty'))
 
@@ -79,6 +80,7 @@ def not_book():
 def search():
     display_data=[]
     movieName=request.form.get('movieName')
+    movieName=movieName.lower()
     if movieName!='':
         data = list(mg.db.movie_a.find({'name': movieName}))
     else:
@@ -105,4 +107,4 @@ def display():
     return render_template('display.html',data=display_data)
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5000)
