@@ -62,7 +62,7 @@ def booking_info():
             if i['qty']<qty:
                 break
             if i['time']==time and i['name']==name:
-                mg.db.movie_a.update_one({'name':name},{'$set':{'qty':i['qty']-qty}})
+                mg.db.movie_a.update_one({'name':name,'time':time},{'$set':{'qty':i['qty']-qty}})
                 message='result'
 
     return redirect(message)
